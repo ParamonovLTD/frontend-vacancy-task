@@ -7,7 +7,7 @@ const DrawerSider: React.FC = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const { width } = useWindowDimensions()
 
-  const onLinkClick = () => useCallback(() => {
+  const onLinkClick = useCallback(() => {
     setVisible(false)
   }, [])
 
