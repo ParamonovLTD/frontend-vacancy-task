@@ -1,24 +1,32 @@
-import React, { useState } from 'react'
-import { tokens, categories } from './tokens'
-import { menu } from './menu'
+import React from 'react'
+import 'antd/dist/antd.css'
 import './App.css'
+import { PagesRouter } from './pages/PagesRouter';
+import { BrowserRouter } from 'react-router-dom';
+import { Layout } from 'antd';
+import FilterContextProvider from './context/FilterContex';
+import DrawerSider from './shared/components/DrawerSider';
+
+const { Content } = Layout;
 
 function App() {
-  const [category, setCategory] = useState(categories[0])
-
   return (
-    <div className="app">
-      <div className="menu">
-        {menu.map((item) => (
-          <div className="menu-item">{item.title}</div>
-        ))}
+    <FilterContextProvider>
+      <div className="app">
+        <BrowserRouter>
+          <Layout>
+            <DrawerSider />
+
+            <Layout>
+              <Content>
+                <PagesRouter />
+              </Content>
+            </Layout>
+          </Layout>
+        </BrowserRouter>
       </div>
-      <div className="tokens">
-        {tokens.map((item) => (
-          <div className="token">{item.name}</div>
-        ))}
-      </div>
-    </div>
+    </FilterContextProvider>
+
   )
 }
 
